@@ -228,6 +228,9 @@ const divideWatchList = async()=>{
    const currentArr = myWatchListArr.slice(indexStart,indexEnd)
    if(currentArr.length >0){
     renderWatchList(currentArr)
+   }else if(currentArr.length ==0){
+    console.error("no movies")
+
    }else{
     updatePageNum("minus")
    }
