@@ -1,2 +1,2 @@
 /api/omdb/* https://www.omdbapi.com/:splat 301
-/api/omdb/* https://www.img.omdbapi.com/:splat 301
+/api/omdb/* https://img.omdbapi.com/:splat 301
