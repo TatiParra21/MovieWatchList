@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Movie WatchList99</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Parisienne&family=Sacramento&family=Sofia&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <header class="top-part-class flex-colum" id="search-movie-sec">
+            <div  class="header-first-part flex-row">
+                <h1>Movie Watchlist99</h1>
+                <button class="switch-sec-btn pad-five" id="watch-list-btn">My Watchlist</button>
+            </div>
+            <div class="search-container flex-colum">
+                <input list="suggestions" type="search" id="search-movie-bar" placeholder="Search for movie...">
+                <datalist id="suggestions">
+                </datalist>
+            <button class="search-btn-class pad-five"id="search-movie-btn">Search</button>
+            </div>
+        
+        </header>
+        <section id="my-movies-sec" class="top-part-class flex-colum">
+            
+            <div class="header-first-part flex-colum">
+                <h1>My Watchlist</h1>
+                <button class="switch-sec-btn pad-five" id="go-to-search">Go to search section</button>
+            </div>
+            <!--  
+            <div class="search-container flex-colum">
+                <input class="pad-five" list="my-movie-list" type="search" id="search-my-list-bar" placeholder="Search for my movies in Watchlist...">
+                <datalist id="my-movie-list">
+                </datalist> 
+            <button class="search-btn-class pad-five"id="search-my-watchlist-btn">Search</button>
+        </div> 
+        in the future i will incorporate a search feature for the watchlist
+        -->
+        </section>
+
+            
+       
+
+        <main id="main-content">
+        </main>
+        <div id="back-btn">
+            <button class="pad-five">Back</button>
+        </div>
+        
+        <div id="bottom-btns" class="flex-row">
+            <button class="pad-five" id="prev-btn"> Previous </button>
+            <h3 id="page-number">0</h3>
+            <button class="pad-five" id="next-btn"> Next </button>
+        </div>
+        <script src="index.js" type="module"></script>
+    </body>
+</html>
