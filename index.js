@@ -57,7 +57,7 @@ const mainApi = async (val,type,page)=>{
     }  
 }
 const mainPoster = (val)=>{
-    const res = `/api/omdb/?apikey=9a2cb7fc&i=${val}`
+    const res = `/api/img.omdb/?apikey=9a2cb7fc&i=${val}`
     return res
 }
 ///Search movies by title
