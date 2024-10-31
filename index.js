@@ -44,7 +44,7 @@ if(!movieWatchList){
 // functions using the API
 const mainApi = async (val,type,page)=>{
     try {
-        const res = await fetch(`/api/omdb/?apikey=9a2cb7fc&${type}=${val}&page=${page}`)
+        const res = await fetch(`/api/omdb/info/?apikey=9a2cb7fc&${type}=${val}&page=${page}`)
         if(!res.ok){
             throw new Error("fetch request was not okay")
         }
@@ -57,7 +57,7 @@ const mainApi = async (val,type,page)=>{
     }  
 }
 const mainPoster = (val)=>{
-    const res = `/api/img.omdb/?apikey=9a2cb7fc&i=${val}`
+    const res = `/api/omdb/img/?apikey=9a2cb7fc&i=${val}`
     return res
 }
 ///Search movies by title
