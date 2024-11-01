@@ -148,6 +148,11 @@ h2{
 #back-btn button{
     font-size: 1em;
 }
+.no-movies{
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}
 
 
 @media(min-width:700px){

@@ -44,7 +44,7 @@ if(!movieWatchList){
 // functions using the API
 const mainApi = async (val,type,page)=>{
     try {
-        const res = await fetch(`/api/omdb/info/?apikey=9a2cb7fc&${type}=${val}&page=${page}`)
+        const res = await fetch(`http://www.omdbapi.com/?apikey=9a2cb7fc&${type}=${val}&page=${page}`)
         if(!res.ok){
             throw new Error("fetch request was not okay")
         }
@@ -57,7 +57,7 @@ const mainApi = async (val,type,page)=>{
     }  
 }
 const mainPoster = (val)=>{
-    const res = `/api/omdb/img/?apikey=9a2cb7fc&i=${val}`
+    const res = `http://img.omdbapi.com/?apikey=9a2cb7fc&i=${val}`
     return res
 }
 ///Search movies by title
@@ -77,10 +77,9 @@ const changeBtnType=(sec)=>{
 const updateHtml =(container,newHtml)=>{
     container.innerHTML = newHtml 
     changeBtnType(currentSection)
-    if(pageNum){
+    if(pageNum || pageNum == 0){
         pageNumber.innerHTML = pageNum
 }
-    
 }
 //updates button properties based on if it is in watchlist or not
 const updateBtnProperties = (isInWatchList)=>{
@@ -212,6 +211,23 @@ const renderWatchList = async (list)=>{
 const updateWatchList=()=>{
     localStorage.setItem("watchlist",JSON.stringify(myWatchListArr))
 }
+const convertToFlex = () =>{
+    if(mainContent.classList.contains("search-style")){
+        mainContent.classList.remove("about-page-style")
+    }else if(mainContent.classList.contains("watch-style")){
+        mainContent.classList.remove("watch-style")
+    }
+    mainContent.classList.add("about-style")
+}
+const noMovies = () =>{
+    convertToFlex()
+    let nopage 
+    nopage =    `
+    <h3 class="no-movies">No Movies</h3>
+    `
+    pageNum = 0 
+    updateHtml(mainContent,nopage)
+}
 //this function divides the movies in watchlist into its pages, it also renders the watchlist
 const divideWatchList = async()=>{
     const res = myWatchListArr.length/maxMoviesInWlPerPage
@@ -229,8 +245,7 @@ const divideWatchList = async()=>{
    if(currentArr.length >0){
     renderWatchList(currentArr)
    }else if(currentArr.length ==0){
-    console.error("no movies")
-
+    noMovies()
    }else{
     updatePageNum("minus")
    }
@@ -284,8 +299,7 @@ const updatePageNum =async(effect="")=>{
         }else if(effect =="add"){
             pageNum++
         }
-    }
-    if(currentSection == "searchSec"){
+    }if(currentSection == "searchSec"){
         //Current search is the value in the search bar. 
         //In here we get the list of movies  again but from a different page dependig on the pageNum VAlue
         const searchAgain = await searchMovies(currentSearch,pageNum)
@@ -343,7 +357,13 @@ const toggleSection =(hide,show, func) =>{
 const toggleAndReset =(section)=>{
     changeBtnType(currentSection)
     if(section=="watchListBtn"){
-        pageNum = 1
+        if(myWatchListArr.length == 0){
+            toggleClass(mainContent,"about-style","search-style")
+            noMovies()
+        }else{
+            pageNum = 1
+        }
+       
         toggleSection(searchMovieSec,watchListSec,divideWatchList)
     }else if(section =="searchSecBtn"){
         disableBtnAtStart(nextBtn,prevBtn,true)
@@ -368,3 +388,4 @@ backBtn.addEventListener("click",()=>{
     currentSection = "watchListSec"
     updatePageNum()
 })
+
