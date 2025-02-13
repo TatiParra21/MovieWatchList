@@ -99,6 +99,7 @@ const updateBtnProperties = (isInWatchList)=>{
 const toggleClass =(content,add,rem)=>{
     content.classList.add(add)
     content.classList.remove(rem)
+    //I made no changes cause it will take a while
     }
     //Function that genetates html 
 const generateMovieHtml = async (list,type) =>{
